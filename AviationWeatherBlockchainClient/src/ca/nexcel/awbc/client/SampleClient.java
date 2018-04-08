@@ -8,8 +8,11 @@ import java.util.List;
 public class SampleClient {
 
 	public static void main(String[] args) {
+		
+		//Your URL and RPC port
 		String url = "http://127.0.0.1:2652/";
  
+		//Your RPC credentials.
 		String username = "user1";
 		String password = "password1";
 		
@@ -28,8 +31,8 @@ public class SampleClient {
         cal1.setTime(new Date());
         cal1.add(Calendar.DAY_OF_YEAR, -1);
         Date date3 = cal1.getTime();
-		List<String> metarsForStationCountryStationDate = awbc.getMetarsForCountryAndStationIdAndObservationDate("CA", "CYYZ", date3);
-		output(metarsForStationCountryStationDate);
+        List<String> metarsForStationCountryStationDate = awbc.getMetarsForCountryAndStationIdAndObservationDate("CA", "CYYZ", date3);
+        output(metarsForStationCountryStationDate);
 		
 		System.out.println("**get ALL metars for country, station and between two dates**");
 		Date date1 = new Date();
