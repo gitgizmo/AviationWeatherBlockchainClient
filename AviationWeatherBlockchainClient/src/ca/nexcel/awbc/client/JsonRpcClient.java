@@ -9,7 +9,7 @@ import java.util.Map;
 
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 
-
+ 
 public class JsonRpcClient {
 	
 	/**

@@ -1,5 +1,5 @@
 #!/bin/bash
-multichain-cli metar subscribe AF 
+multichain-cli metar subscribe AF  
 multichain-cli metar subscribe AX 
 multichain-cli metar subscribe AL 
 multichain-cli metar subscribe DZ 

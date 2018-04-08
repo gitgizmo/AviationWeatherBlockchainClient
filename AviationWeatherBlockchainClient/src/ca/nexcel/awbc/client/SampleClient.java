@@ -9,7 +9,7 @@ public class SampleClient {
 
 	public static void main(String[] args) {
 		String url = "http://127.0.0.1:2652/";
-
+ 
 		String username = "user1";
 		String password = "password1";
 		
