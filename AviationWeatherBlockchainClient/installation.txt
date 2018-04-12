@@ -2,7 +2,7 @@ Installation Instructions
 =========================
 The following are instructions on how to set up and configure the Aviation Weather Blockchain Client Multichain node, and
 create a AviationWeatherBlockchainClient to query it.
-   
+
 Prerequisites
 -------------
 1. A AviationWeatherBlockchainProcessor peer node must be set up and running
