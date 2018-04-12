@@ -33,7 +33,7 @@
 					<finalName>${artifactId}-${version}-with-dependencies</finalName>
 				</configuration>
 			</plugin>
-
+ 
 		</plugins>
 	</build>
 
