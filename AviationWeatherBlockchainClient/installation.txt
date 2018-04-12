@@ -1,46 +1,50 @@
+Installation Instructions
+=========================
 The following are instructions on how to set up and configure the Aviation Weather Blockchain Client Multichain node, and
 create a AviationWeatherBlockchainClient to query it.
 
-Prerequisite
-- A AviationWeatherBlockchainProcessor peer node must be set up and running
-- Must have IP address and network port for the peer AviationWeatherBlockchainClient node
- 
+Prerequisites
+-------------
+1. A AviationWeatherBlockchainProcessor peer node must be set up and running
+2. Must have IP address and network port for the peer AviationWeatherBlockchainClient node
 
-1. Install multichain 2.0 or later
+Steps
+-----
+
+**1. Install multichain 2.0 or later**
 https://www.multichain.com/download-install/
 
-2. Synchronize chain
+**2. Synchronize chain**
 
-multichaind metar@xxx.xxx.xxx.xxx:yyyy
+    multichaind metar@xxx.xxx.xxx.xxx:yyyy
 
 where:
-- xxx.xxx.xxx.xxx is the IP address of the node from which you want synchronize, 
+* xxx.xxx.xxx.xxx is the IP address of the node from which you want synchronize, 
 such as the AviationWeatherBlockchainProcessor.
-- yyyy is the network port used for the metar blockchain. See default-network-port in the metar params.dat file on the
+* yyyy is the network port used for the metar blockchain. See default-network-port in the metar params.dat file on the
 node for which you want to synchronize.
 
 You may need to ask the administrator of that blockchain if you do not have access to that file.
 
 If you are synchronzing to the public available AviationWeatherBlockchainProcessor metar block chain then you can connect as follows
 
-multichaind metar@192.168.1.102:2653
+    multichaind metar@159.203.56.241:2653
 
 The metar chain will immediately start to synchronize. Please see the following link to determine when the chain is finished synch'ing
+https://www.multichain.com/qa/7257/multichain-sync-status
 
 If you have created your own AviationWeatherBlockchainProcessor, then you should use its IP and network port.
 
-https://www.multichain.com/qa/7257/multichain-sync-status
+**3. Subscribe to the streams**
 
-3. Subscribe to the streams
-
-subscribeStream.sh
+    subscribeStream.sh
 
 This may take several minutes depending on the amount of data synchronized since the subscribing to a stream
 causes the blockchain to index the data for each stream.
 
 Note: Confirm the files have the required execute permission. Be sure to review the output for any failures.
 
-4. (Optional) Change rpc username and password
+**4. (Optional) Change rpc username and password**
 Although you are free to use the generated rpcuser and rpcpassword found in the metar multichain.conf file, its recommended
 that you choose hard to guess ones. Simply edit the metar multichain.conf file on the sync'd node and change them. If the node 
 is running then you need to stop it first, then restart it.
@@ -48,30 +52,37 @@ is running then you need to stop it first, then restart it.
 Note the usename and password will NOT be the same as the peer blockchain.
 
 On Linux you can stop the metar chain as follows
-multichain-cli metar stop
+    multichain-cli metar stop
 
 On Windows, press CLTR-C twice.
 
 Start the metar chain as shown in step 2
 
-5. Use AviationWeatherBlockchainClient to query the local copy of the replicated blockchain.
+**5. You are done!**
+
+Usage
+-----
+
+Use AviationWeatherBlockchainClient to query the local copy of the replicated blockchain.**
 
 Using the RPC port (and not the network port), username and password you can create 
 AviationWeatherBlockchainClient as follows. Note that the RPC port is found in the 
 params.dat file in the metar directory in the default-rpc-port property.
 
+```java		
+AviationWeatherBlockchainClient awbc = new AviationWeatherBlockchainClient("http://127.0.0.1:2652/", "foouser", "barpassword");
+List<String> metarsForStationCountryStationDate = awbc.getMetarsForCountryAndStationIdAndObservationDate("CA", "CYYZ", new Date());
+```
 		
-		AviationWeatherBlockchainClient awbc = new AviationWeatherBlockchainClient("http://127.0.0.1:2652/", "foouser", "barpassword");
-		
-See SampleClient.java in the jar or code base for a fulsome example
-
-6. You are done!
+See [SampleClient.java](https://github.com/gitgizmo/AviationWeatherBlockchainClient/blob/master/AviationWeatherBlockchainClient/src/ca/nexcel/awbc/client/SampleClient.java) in the code base for a fulsome example
 
 Common problems
-- firewall not opened on the client blockchain
-- firewall not opened on the serving blockchain
-- using the network port instead of the RPC port in client code
-- using rpc port when synch'ing
-- using incorrect username and password
-- subscribe not performed, partially performed or failed
-- serving blockchain not running		
+---------------
+
+* firewall not opened on the client blockchain
+* firewall not opened on the serving blockchain
+* using the network port instead of the RPC port in client code
+* using rpc port when synch'ing
+* using incorrect username and password
+* subscribe not performed, partially performed or failed
+* serving blockchain not running		
