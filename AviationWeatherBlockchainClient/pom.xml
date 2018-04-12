@@ -6,7 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Aviation Weather Blockchain Client</name>
 	<description>A client API used to query data in the Aviation Weather Blockchain Processor</description>
-	<build>
+	<build> 
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
